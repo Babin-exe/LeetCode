@@ -1,5 +1,4 @@
 
-I have created a repo on github and will upload all the questions i will solve there , this is what i added : class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int start = 0;
         int end = numbers.length - 1;
