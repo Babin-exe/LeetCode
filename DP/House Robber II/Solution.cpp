@@ -70,3 +70,34 @@ public:
     }
 };
 
+//Constant space bottom up  : 
+
+class Solution {
+public:
+    int n;
+    int solve(int l, int r, vector<int>& nums) {
+        int ans = 0;
+        int one_step = 0, two_step = 0;
+
+        for (int i = l; i <= r; i++) {
+            int take = nums[i] + two_step;
+            int ntake = one_step;
+
+            ans = max(take, ntake);
+
+            two_step = one_step;
+            one_step = ans;
+        }
+        return ans;
+    }
+    int rob(vector<int>& nums) {
+        n = nums.size();
+
+        if(n==1) return nums[0];
+        int case1 = solve(0, n - 2, nums);
+        int case2 = solve(1, n - 1, nums);
+        return max(case1, case2);
+    }
+};
+
+
