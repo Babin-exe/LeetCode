@@ -18,3 +18,26 @@ public:
         return dp[n - 1];
     }
 };
+
+//Constant space : 
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+
+        int n = nums.size();
+
+        int two_step_back = 0, one_step_back = 0;
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            int take = nums[i] + two_step_back;
+            int ntake = one_step_back;
+            ans = max(take, ntake);
+
+            two_step_back = one_step_back;
+            one_step_back = ans;
+        }
+
+        return ans;
+    }
+};
