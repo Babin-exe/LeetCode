@@ -49,3 +49,19 @@ public:
         return solve(0, -1, nums);
     }
 };
+
+//A bit more optimized , from O(n^2) to O(n log n)) 
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> t;
+        for (int i = 0; i < n; i++) {
+            int z = nums[i];
+            auto it = lower_bound(begin(t),end(t),z);
+            if(it == end(t)) t.push_back(z);
+             else *it = z;
+        }
+        return t.size();
+    }
+};
