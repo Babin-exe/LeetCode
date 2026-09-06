@@ -43,3 +43,29 @@ public:
         return solve(0, -1, pairs);
     }
 };
+
+// Greedy O(n logn))
+class Solution {
+public:
+    int findLongestChain(vector<vector<int>>& pairs) {
+
+        sort(begin(pairs), end(pairs));
+        int n = pairs.size();
+
+        vector<vector<int>> t;
+        t.push_back(pairs[0]);
+
+        for (int i = 1; i < n; i++) {
+            int l = pairs[i][0];
+            int r = pairs[i][1];
+
+            if (l > t.back()[1]) {
+                t.push_back({l, r});
+            } else if (r < t.back()[1]) {
+                t.back() = {l, r};
+            }
+        }
+
+        return t.size();
+    }
+};
